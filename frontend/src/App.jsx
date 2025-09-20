@@ -33,7 +33,7 @@ function App() {
     setDocuments(prev => [...prev, newDocument]);
   };
 
-  const handleSelectDocument = (documentId, filename) => {
+  const handleSelectDocument = (documentId, _filename) => {
     const document = documents.find(doc => doc.id === documentId);
     setSelectedDocument(document);
   };

@@ -47,26 +47,7 @@ public class DefaultGeminiService implements GeminiService {
             throw new RuntimeException("Gemini API key is not configured. Please set the GEMINI_API_KEY environment variable.");
         }
 
-        String prompt = String.format(
-                "Na základě následujícího kontextu z dokumentu odpovězte na otázku v češtině. " +
-                "Pokud odpověď není v kontextu dostupná, řekněte 'Na základě poskytnutého dokumentu nemohu odpovědět na tuto otázku.'\n\n" +
-                "Kontext: %s\n\n" +
-                "Otázka: %s\n\n" +
-                "Odpověď:",
-                context, question
-        );
-
-        var requestBody = Map.of(
-                "contents", List.of(
-                        Map.of("parts", List.of(
-                                Map.of("text", prompt)
-                        ))
-                ),
-                "generationConfig", Map.of(
-                        "temperature", 0.3,
-                        "maxOutputTokens", 500
-                )
-        );
+        var requestBody = getRequestBody(question, context);
 
         try {
             logger.debug("Sending request to Gemini API");
@@ -100,5 +81,28 @@ public class DefaultGeminiService implements GeminiService {
             logger.error("Failed to generate answer with Gemini", e);
             throw new RuntimeException("Failed to generate answer: " + e.getMessage(), e);
         }
+    }
+
+    private static Map<String, Object> getRequestBody(String question, String context) {
+        String prompt = String.format(
+                "Na základě následujícího kontextu z dokumentu odpovězte na otázku v češtině. " +
+                "Pokud odpověď není v kontextu dostupná, řekněte 'Na základě poskytnutého dokumentu nemohu odpovědět na tuto otázku.'\n\n" +
+                "Kontext: %s\n\n" +
+                "Otázka: %s\n\n" +
+                "Odpověď:",
+                context, question
+        );
+
+        return Map.of(
+                "contents", List.of(
+                        Map.of("parts", List.of(
+                                Map.of("text", prompt)
+                        ))
+                ),
+                "generationConfig", Map.of(
+                        "temperature", 0.3,
+                        "maxOutputTokens", 500
+                )
+        );
     }
 }

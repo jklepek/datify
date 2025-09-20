@@ -3,8 +3,8 @@ package com.klepek.datify;
 import org.junit.jupiter.api.Test;
 import org.springframework.ai.embedding.EmbeddingModel;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.TestPropertySource;
+import org.springframework.test.context.bean.override.mockito.MockitoBean;
 
 @SpringBootTest
 @TestPropertySource(properties = {
@@ -12,7 +12,7 @@ import org.springframework.test.context.TestPropertySource;
 })
 class DatifyApplicationTests {
 
-    @MockBean
+    @MockitoBean
     private EmbeddingModel embeddingModel;
 
     @Test

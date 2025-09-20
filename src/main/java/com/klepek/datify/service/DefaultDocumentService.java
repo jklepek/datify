@@ -13,7 +13,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -44,7 +43,7 @@ public class DefaultDocumentService implements DocumentService {
         this.tika = new Tika();
     }
 
-    public Document uploadDocument(MultipartFile file) throws IOException, TextExtractionException {
+    public Document uploadDocument(MultipartFile file) throws TextExtractionException {
         logger.info("Starting document upload for file: {}", file.getOriginalFilename());
 
         try {

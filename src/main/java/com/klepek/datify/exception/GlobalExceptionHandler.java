@@ -104,11 +104,11 @@ public class GlobalExceptionHandler {
         // Extract specific validation errors
         StringBuilder detailsBuilder = new StringBuilder();
         e.getBindingResult().getFieldErrors().forEach(error -> {
-            if (detailsBuilder.length() > 0) detailsBuilder.append("; ");
+            if (!detailsBuilder.isEmpty()) detailsBuilder.append("; ");
             detailsBuilder.append(error.getField()).append(": ").append(error.getDefaultMessage());
         });
 
-        errorResponse.put("message", detailsBuilder.length() > 0 ? detailsBuilder.toString() : "Invalid input data");
+        errorResponse.put("message", !detailsBuilder.isEmpty() ? detailsBuilder.toString() : "Invalid input data");
         errorResponse.put("timestamp", System.currentTimeMillis());
 
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorResponse);
