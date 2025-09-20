@@ -1,0 +1,26 @@
+DATIFY Test Document
+
+This is a test document for the DATIFY AI-powered document Q&A system.
+
+The system was created as part of an interview task to demonstrate the following capabilities:
+- Document upload and text extraction
+- Creating embeddings using OpenAI API
+- Vector storage and similarity search
+- Question answering using RAG pattern
+- Czech language support
+
+Key features:
+1. Upload PDF and TXT documents
+2. Extract text using Apache Tika
+3. Create embeddings with OpenAI's text-embedding-3-small model
+4. Store documents with vector embeddings in memory
+5. Ask questions about document content
+6. Get answers in Czech language
+
+Technical stack:
+- Backend: Java 21, Spring Boot 3.x, Gradle
+- Frontend: React 18, Tailwind CSS
+- Database: H2 in-memory
+- AI: OpenAI API for embeddings and chat completion
+
+This document can be used to test the question-answering functionality.

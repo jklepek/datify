@@ -1,0 +1,21 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .file-drop-zone {
+    @apply border-2 border-dashed border-gray-300 transition-all duration-300;
+  }
+
+  .file-drop-zone.dragover {
+    @apply border-primary bg-blue-50;
+  }
+
+  .chat-message {
+    @apply max-w-[85%];
+  }
+
+  .loading {
+    @apply inline-block w-5 h-5 border-2 border-gray-200 border-t-primary rounded-full animate-spin;
+  }
+}
